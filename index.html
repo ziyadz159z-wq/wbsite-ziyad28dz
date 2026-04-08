@@ -3,92 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ziyad 28dz</title>
-
+<title>ZIYAD 28 DZ</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  /* ==== Reset ==== */
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-
-/* الحاوية */
-.container {
-  text-align: center;
-  animation: fadeIn 2s ease;
-}
-
-/* العنوان */
-h1 {
-  font-size: 50px;
-  margin-bottom: 20px;
-  background: linear-gradient(45deg, #00f5a0, #00d9f5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* النص */
-p {
-  font-size: 20px;
-  margin-bottom: 30px;
-  opacity: 0.8;
-}
-
-/* الزر */
-.btn {
-  padding: 15px 30px;
-  border: none;
-  background: linear-gradient(45deg, #ff512f, #dd2476);
-  color: white;
-  font-size: 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* تأثير */
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ff512f;
-}
-
-/* أنيميشن */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
+  body, html {
+    height: 100%;
+    overflow-x: hidden;
+    background: #000;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* ==== الخلفية المتحركة للبحر ==== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
   }
-}
+
+  .hero video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(60%);
+  }
+
+  /* ==== النصوص ==== */
+  .hero h1 {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Tahoma', sans-serif;
+    color: #FFD700;
+    margin-bottom: 30px;
+  }
+
+  /* ==== زر ابدأ الان ==== */
+  .hero button {
+    padding: 20px 50px;
+    font-size: 24px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .hero button:hover {
+    background-color: #777;
+  }
+
+  /* ==== الدعم والمساعدة ==== */
+  #supportBox {
+    position: fixed;
+    bottom: -100%;
+    right: 30px;
+    width: 300px;
+    height: 400px;
+    background: #111;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 0 20px #000;
+    transition: 0.5s;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    z-index: 1000;
+  }
+
+  #supportBox h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  #supportBox textarea {
+    flex: 1;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+  }
+
+  #supportBox button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0a84ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* ==== شبكات التواصل ==== */
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .social-card {
+    width: 200px;
+    text-align: center;
+    background: #222;
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.3s;
+  }
+
+  .social-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .social-card button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+  }
+
+  .instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+  .discord { background: #7289da; }
 </style>
-
 </head>
-
 <body>
 
-<div class="container">
-  <h1>ziyad 28dz يرحب بكم 👑</h1>
-  <p>موقع احترافي بتصميم عصري</p>
-  <button class="btn" onclick="showMessage()">ابدأ الآن</button>
+<!-- ==== الخلفية الرئيسية ==== -->
+<section class="hero">
+  <video autoplay muted loop>
+    <source src="https://cdn.pixabay.com/vimeo/406700571/Drone-Forest-56133.mp4" type="video/mp4">
+  </video>
+  <h1>ZIYAD 28 DZ</h1>
+  <h2>مرحبا بك في موقعنا الالكتروني</h2>
+  <button id="startBtn">ابدأ الآن</button>
+</section>
+
+<!-- ==== الدعم والمساعدة ==== -->
+<div id="supportBox">
+  <h3>🎧 الدعم والمساعدة</h3>
+  <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+  <button onclick="alert('تم ارسال الرسالة لصاحب الموقع')">أرسل</button>
+</div>
+
+<!-- ==== شبكات التواصل ==== -->
+<div class="socials">
+  <div class="social-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    <button class="instagram" onclick="window.open('https://www.instagram.com/dx.x_ziyad288/','_blank')">تابعنا</button>
+  </div>
+  <div class="social-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
+    <button class="discord" onclick="window.open('https://discord.gg/MdAd2bq5','_blank')">تابعنا</button>
+  </div>
 </div>
 
 <script>
-function showMessage() {
-  alert("مرحبا بك في عالم زياد 🔥");
-}
+  // ==== أظهار الدعم عند الضغط على الصفحة ====
+  const supportBox = document.getElementById('supportBox');
+  document.body.addEventListener('click', (e)=>{
+    if(!e.target.closest('#supportBox')) {
+      supportBox.style.bottom = '0';
+    }
+  });
+
+  // ==== بدء الفيديو الخلفية عند الضغط على ابدأ الآن ====
+  const startBtn = document.getElementById('startBtn');
+  startBtn.addEventListener('click', ()=>{
+    alert("هنا يمكنك عمل انتقال لفيديو الغابات والجبال بالطبع لاحقاً");
+    // يمكن هنا تغيير src الفيديو حسب طلبك
+  });
 </script>
 
 </body>
