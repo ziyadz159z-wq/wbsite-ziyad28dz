@@ -1,216 +1,139 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIYAD 28 DZ</title>
-    <style>
-        /* --- إعدادات عامة --- */
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
-        body, html { width:100%; height:100%; overflow-x:hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZIYAD 28 DZ & wassim_donx_12</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
+body, html { width:100%; height:100%; overflow-x:hidden; }
 
-        /* --- الخلفية المتحركة للبحر --- */
-        .hero {
-            width:100%; height:100vh;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            animation: wave 15s infinite linear;
-        }
-        @keyframes wave {
-            0% { background-position: 0 0; }
-            100% { background-position: -2000px 0; }
-        }
+/* --- الصفحة الرئيسية --- */
+.hero {
+    width:100%; height:100vh;
+    display:flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    background-size: cover;
+    animation: wave 15s infinite linear;
+    transition: background-image 1s ease-in-out;
+}
+@keyframes wave {0%{background-position:0 0;}100%{background-position:-2000px 0;}}
 
-        /* --- النصوص في الصفحة الرئيسية --- */
-        .hero h1 {
-            font-size: 4rem;
-            color: white;
-            font-family: 'Impact', sans-serif;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.8rem;
-            color: white;
-            font-family: 'Cairo', sans-serif;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-            margin-bottom: 40px;
-        }
+.hero h1 { font-size:4rem; color:white; font-family:'Impact',sans-serif; text-shadow:2px 2px 10px rgba(0,0,0,0.7); margin-bottom:10px; }
+.hero h2 { font-size:2rem; color:white; text-shadow:2px 2px 10px rgba(0,0,0,0.7); margin-bottom:20px; }
+.hero p { font-size:1.8rem; color:white; font-family:'Cairo',sans-serif; text-shadow:2px 2px 10px rgba(0,0,0,0.7); margin-bottom:40px; }
+.hero button {
+    padding:20px 60px; font-size:1.5rem; background-color:#7f7f7f; color:white;
+    border:none; border-radius:10px; cursor:pointer; transition:transform 0.3s, background-color 0.3s;
+}
+.hero button:hover { background-color:#5a5a5a; transform:scale(1.1); }
 
-        /* --- زر ابدأ الآن --- */
-        .hero button {
-            padding: 20px 60px;
-            font-size: 1.5rem;
-            background-color: #7f7f7f;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-        }
-        .hero button:hover {
-            background-color: #5a5a5a;
-            transform: scale(1.1);
-        }
+/* --- الصفحة الداخلية --- */
+.main { display:none; width:100%; min-height:100vh; background-size:cover; padding:20px; color:white; transition: background-image 1s ease-in-out; }
 
-        /* --- الصفحة الداخلية --- */
-        .main {
-            display:none;
-            width:100%;
-            min-height:100vh;
-            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
-            background-size: cover;
-            padding: 20px;
-            color: white;
-        }
-        .support {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            display:flex;
-            align-items:center;
-            gap:10px;
-        }
-        .support span { font-size:1.2rem; }
+/* --- بروفايل الموقع --- */
+.profile { position: fixed; top:20px; left:20px; background: rgba(255,255,255,0.9); color:black; padding:15px 25px; border-radius:50%; font-weight:bold; font-size:1.2rem; text-align:center; box-shadow:0 0 15px rgba(0,0,0,0.5); }
+.profile img { width:80px; height:80px; border-radius:50%; border:3px solid gold; display:block; margin:auto; }
+.profile div { margin-top:5px; font-weight:bold; }
 
-        .chat-box {
-            display:none;
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            background: rgba(0,0,0,0.85);
-            border-radius: 10px;
-            padding: 10px;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .chat-box textarea {
-            width: 100%;
-            height: 80%;
-            border-radius:10px;
-            padding:5px;
-            resize:none;
-        }
-        .chat-box button {
-            width:100%;
-            padding:10px;
-            margin-top:5px;
-            background-color:#28a745;
-            border:none;
-            color:white;
-            cursor:pointer;
-            border-radius:5px;
-        }
+/* --- الدعم والمساعدة --- */
+.support { position: fixed; top:20px; right:20px; background: rgba(0,0,0,0.7); padding:10px 20px; border-radius:10px; cursor:pointer; display:flex; align-items:center; gap:10px; }
+.support span { font-size:1.2rem; }
+.chat-box { display:none; position: fixed; top:70px; right:20px; width:300px; height:400px; background: rgba(0,0,0,0.85); border-radius:10px; padding:10px; flex-direction: column; justify-content: space-between; }
+.chat-box textarea { width:100%; height:80%; border-radius:10px; padding:5px; resize:none; }
+.chat-box button { width:100%; padding:10px; margin-top:5px; background-color:#28a745; border:none; color:white; cursor:pointer; border-radius:5px; }
 
-        /* --- خانات الانستغرام والديسكورد --- */
-        .socials {
-            display:flex;
-            gap:20px;
-            flex-wrap:wrap;
-            margin-top: 100px;
-        }
-        .card {
-            background: rgba(0,0,0,0.6);
-            border-radius: 20px;
-            width: 250px;
-            text-align: center;
-            padding:20px;
-        }
-        .card img {
-            width:100%;
-            border-radius:15px;
-        }
-        .card button {
-            margin-top:15px;
-            padding:10px 20px;
-            font-size:1rem;
-            border:none;
-            border-radius:10px;
-            cursor:pointer;
-            color:white;
-        }
-        .instagram { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
-        .discord { background: #7289da; }
-        .donate { background: #ff6b6b; margin-top:20px; }
+/* --- خانات الانستغرام والديسكورد --- */
+.socials { display:flex; gap:20px; flex-wrap:wrap; margin-top:120px; }
+.card { background: rgba(0,0,0,0.6); border-radius:20px; width:250px; text-align:center; padding:20px; }
+.card img { width:100%; border-radius:15px; }
+.card button { margin-top:15px; padding:10px 20px; font-size:1rem; border:none; border-radius:10px; cursor:pointer; color:white; }
+.instagram { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
+.discord { background: #7289da; }
+.donate { background: #ff6b6b; margin-top:20px; }
 
-        /* --- تاج بروفايل --- */
-        .profile {
-            position: fixed;
-            top:20px;
-            left:20px;
-            background: rgba(255,255,255,0.9);
-            color:black;
-            padding:15px 25px;
-            border-radius:50%;
-            font-weight:bold;
-            font-size:1.2rem;
-            text-align:center;
-            box-shadow:0 0 15px rgba(0,0,0,0.5);
-        }
-
-    </style>
+/* --- قائمة روابط الانستغرام --- */
+#instaLinks { display:none; margin-top:10px; flex-direction:column; gap:5px; }
+#instaLinks a { color:white; text-decoration:none; background:#d62976; padding:5px 10px; border-radius:5px; }
+</style>
 </head>
 <body>
 
-    <!-- الصفحة الرئيسية -->
-    <div class="hero">
-        <h1>ZIYAD 28 DZ</h1>
-        <p>مرحبا بك في موقعنا الالكتروني</p>
-        <button id="startBtn">ابدأ الآن</button>
+<!-- الصفحة الرئيسية -->
+<div class="hero" id="hero">
+    <h1>ZIYAD 28 DZ</h1>
+    <h2>wassim_donx_12</h2>
+    <p>مرحبا بك في موقعنا الالكتروني</p>
+    <button id="startBtn">ابدأ الآن</button>
+</div>
+
+<!-- الصفحة الداخلية -->
+<div class="main" id="main">
+    <div class="profile">
+        <img src="images/profile.png" alt="صورة بروفايل الموقع">
+        <div>ZIYAD KING 👑</div>
     </div>
 
-    <!-- الصفحة الداخلية -->
-    <div class="main">
-        <div class="profile">ZIYAD KING 👑</div>
-
-        <div class="support" id="supportBtn">
-            <span>🎧 الدعم والمساعدة</span>
-        </div>
-
-        <div class="chat-box" id="chatBox">
-            <textarea placeholder="اكتب رسالتك هنا..."></textarea>
-            <button onclick="alert('تم إرسال رسالتك إلى صاحب الموقع!')">إرسال</button>
-        </div>
-
-        <div class="socials">
-            <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram">
-                <button class="instagram" onclick="window.open('https://www.instagram.com/dx.x_ziyad288/', '_blank')">تابعنا</button>
-            </div>
-            <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
-                <button class="discord" onclick="window.open('https://discord.gg/MdAd2bq5', '_blank')">تابعنا</button>
-            </div>
-        </div>
-
-        <button class="donate" onclick="alert('شكراً لدعمك! سيتم التواصل معك.')">تقديم الدعم المالي</button>
+    <div class="support" id="supportBtn">
+        <span>🎧 الدعم والمساعدة</span>
     </div>
 
-    <script>
-        // زر بدء الآن
-        document.getElementById('startBtn').addEventListener('click', function() {
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.main').style.display = 'block';
-        });
+    <div class="chat-box" id="chatBox">
+        <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+        <button onclick="alert('تم إرسال رسالتك إلى صاحب الموقع!')">إرسال</button>
+    </div>
 
-        // زر الدعم والمساعدة
-        const supportBtn = document.getElementById('supportBtn');
-        const chatBox = document.getElementById('chatBox');
-        supportBtn.addEventListener('click', () => {
-            chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+    <div class="socials">
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram">
+            <button class="instagram" onclick="toggleInstagramLinks()">تابعنا</button>
+            <div id="instaLinks">
+                <a href="https://www.instagram.com/dx.x_ziyad288/" target="_blank">dx.x_ziyad288</a>
+                <a href="https://www.instagram.com/wassim_donx_12?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">wassim_donx_12</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Discord_logo_wordmark.svg" alt="Discord">
+            <button class="discord" onclick="window.open('https://discord.gg/MdAd2bq5', '_blank')">تابعنا</button>
+        </div>
+    </div>
+
+    <button class="donate" onclick="alert('شكراً لدعمك! سيتم التواصل معك.')">تقديم الدعم المالي</button>
+</div>
+
+<script>
+// زر بدء الآن
+document.getElementById('startBtn').addEventListener('click', function() {
+    document.querySelector('.hero').style.display = 'none';
+    document.querySelector('.main').style.display = 'block';
+});
+
+// زر الدعم والمساعدة
+const supportBtn = document.getElementById('supportBtn');
+const chatBox = document.getElementById('chatBox');
+supportBtn.addEventListener('click', () => {
+    chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// قائمة الانستغرام
+function toggleInstagramLinks() {
+    const links = document.getElementById('instaLinks');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// تغيير الخلفية تلقائيًا كل 5 ثواني
+const heroImages = [
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80', // بحر
+    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80', // جبال
+    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80'  // غابة
+];
+let currentHero = 0;
+setInterval(() => {
+    currentHero = (currentHero + 1) % heroImages.length;
+    document.getElementById('hero').style.backgroundImage = `url(${heroImages[currentHero]})`;
+    document.getElementById('main').style.backgroundImage = `url(${heroImages[currentHero]})`;
+}, 5000);
+</script>
 
 </body>
 </html>
