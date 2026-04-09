@@ -1,220 +1,172 @@
-// ========================= 🚀 نسخة نهائية احترافية كاملة (ALL-IN-ONE) =========================
-// 🎯 تحتوي على:
-// ✔ واجهة فخمة (فيديو + أنيميشن)
-// ✔ دخول فوري
-// ✔ متجر
-// ✔ Firebase
-// ✔ Stripe (جاهز)
-// ✔ Admin
-// ✔ سوشيال
-
-
-// ========================= index.html =========================
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZW28DZ</title>
 <style>
-body,html{margin:0;font-family:Arial;overflow-x:hidden}
-video{position:fixed;width:100%;height:100%;object-fit:cover;z-index:-1}
-.logo{position:absolute;top:20px;right:20px;font-size:30px;font-weight:bold;background:linear-gradient(45deg,red,orange,yellow,green,blue,purple);-webkit-background-clip:text;color:transparent;animation:glow 6s linear infinite}
-@keyframes glow{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
-.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#fff}
-.title{font-size:50px;font-weight:bold}
-.btn{margin-top:20px;padding:20px 60px;font-size:24px;border:none;border-radius:12px;background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);color:#fff;cursor:pointer;transition:0.3s}
-.btn:hover{transform:scale(1.1)}
-.section{padding:80px 20px;background:#111;text-align:center}
-.box{max-width:400px;margin:20px auto}
-.box img{width:100%;border-radius:10px}
-.follow{margin-top:10px;padding:15px;width:100%;border:none;border-radius:8px;color:#fff;cursor:pointer}
-.instagram{background:#E1306C}
-.facebook{background:#3b5998}
-.telegram{background:#0088cc}
-.discord{background:#5865F2}
-.gmail{background:#D44638}
-.popup{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#222;color:#fff;padding:30px;border-radius:10px}
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    scroll-behavior: smooth;
+}
+
+/* فيديو الخلفية */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* اسم الموقع */
+.header {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: yellow; }
+}
+
+/* النص الرئيسي */
+.welcome {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 200px;
+}
+
+/* زر ابدأ */
+.start-btn {
+    display: block;
+    margin: 50px auto;
+    padding: 20px 40px;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    animation: rainbow 5s infinite;
+}
+
+@keyframes rainbow {
+    0% { background: red; }
+    20% { background: orange; }
+    40% { background: yellow; }
+    60% { background: green; }
+    80% { background: blue; }
+    100% { background: purple; }
+}
+
+.section {
+    height: 100vh;
+    text-align: center;
+    padding-top: 100px;
+    background: rgba(0,0,0,0.7);
+}
+
+.social img {
+    width: 200px;
+}
+
+.social button {
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* المتجر */
+.shop {
+    display: none;
+    background: white;
+    color: black;
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+}
+
+.admin {
+    display: none;
+}
+
 </style>
 </head>
 <body>
 
-<video autoplay muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-ocean-waves-1600.mp4">
+<video autoplay muted loop class="video-bg">
+<source src="https://cdn.coverr.co/videos/coverr-ocean-waves-1606/1080p.mp4" type="video/mp4">
 </video>
 
-<div class="logo">ZW28DZ.com</div>
+<div class="header">ZW28DZ.com</div>
 
-<div class="center">
-<div class="title">مــــرحــــبــــا بــك فــي مـــوقــعـــنــا</div>
-<button class="btn" onclick="window.location.href='shop.html'">ابــدا الان</button>
+<div class="welcome">مــــرحــــبــــا بــك فــي مـــوقــعـــنــا</div>
+
+<button class="start-btn" onclick="openShop()">ابــدا الان</button>
+
+<div class="section social">
+    <h2 style="color:white">تابعنا على انستقرام</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+    <br>
+    <button onclick="window.open('https://www.instagram.com/wassim_donx_12?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==')">تــابعنا</button>
+
+    <h2 style="color:white">فيسبوك</h2>
+    <button onclick="notReady()">تابعنا</button>
+
+    <h2 style="color:white">تليغرام</h2>
+    <button onclick="notReady()">تابعنا</button>
+
+    <h2 style="color:white">ديسكورد</h2>
+    <button onclick="notReady()">تابعنا</button>
+
+    <h2 style="color:white">جيميل</h2>
+    <button onclick="notReady()">تابعنا</button>
 </div>
 
-<div class="section">
-<div class="box">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-<button class="follow instagram" onclick="window.open('https://www.instagram.com/wassim_donx_12?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==')">تابعنا</button>
-</div>
+<div class="shop" id="shop">
+    <h1>المتجر</h1>
+    <button style="float:right">الدعم والمساعدة</button>
 
-<div class="box">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
-<button class="follow facebook" onclick="msg()">تابعنا</button>
+    <div class="product">
+        <h3>منتج 1</h3>
+        <p>10$</p>
+        <button>شراء</button>
+        <button class="admin">حذف</button>
+    </div>
 </div>
-
-<div class="box">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
-<button class="follow telegram" onclick="msg()">تابعنا</button>
-</div>
-
-<div class="box">
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg">
-<button class="follow discord" onclick="msg()">تابعنا</button>
-</div>
-
-<div class="box">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png">
-<button class="follow gmail" onclick="msg()">تابعنا</button>
-</div>
-</div>
-
-<div id="popup" class="popup">❌ للأسف لم يتم إنشاء الحساب بعد من قبل صاحب الموقع</div>
 
 <script>
-function msg(){
-let p=document.getElementById('popup');
-p.style.display='block';
-setTimeout(()=>p.style.display='none',3000);
+function openShop() {
+    document.querySelector('.shop').style.display = 'block';
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+function notReady() {
+    alert("❌ للأسف لم يتم انشاء الحساب بعد من طرف صاحب الموقع");
+}
+
+// نظام ادمن بسيط
+var email = prompt("ادخل ايميلك");
+if(email === "ziyadz159z@gmail.com"){
+    document.querySelectorAll('.admin').forEach(el=>el.style.display='inline-block');
 }
 </script>
 
 </body>
 </html>
-
-
-// ========================= shop.html =========================
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>المتجر</title>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
-<style>
-body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial}
-header{display:flex;justify-content:space-between;padding:15px;background:#1a1a1a}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:20px}
-.card{background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;transition:0.3s}
-.card:hover{transform:scale(1.05)}
-.card img{width:100%}
-.buy{background:linear-gradient(90deg,red,orange,yellow,green,blue);color:#fff}
-.admin{display:none;padding:20px}
-</style>
-</head>
-<body>
-<header>
-<div>🛒 ZW28DZ</div>
-<div>
-<button onclick="login()">تسجيل</button>
-<button onclick="support()">الدعم والمساعدة</button>
-</div>
-</header>
-
-<div class="products" id="products"></div>
-
-<div id="admin" class="admin">
-<h3>لوحة التحكم</h3>
-<input id="name" placeholder="اسم المنتج">
-<input id="img" placeholder="رابط الصورة">
-<input id="price" placeholder="السعر">
-<button onclick="addProduct()">إضافة</button>
-</div>
-
-<script>
-const firebaseConfig={apiKey:"YOUR_KEY",authDomain:"YOUR_DOMAIN",projectId:"YOUR_ID"};
-firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
-const db=firebase.firestore();
-
-function login(){
-let e=prompt("الإيميل");
-let p=prompt("كلمة المرور");
-auth.signInWithEmailAndPassword(e,p).then(()=>{
-if(e==="ziyadz159z@gmail.com") document.getElementById("admin").style.display="block";
-}).catch(()=>auth.createUserWithEmailAndPassword(e,p));
-}
-
-function load(){
-db.collection("products").get().then(s=>{
-let html="";
-s.forEach(d=>{
-let p=d.data();
-html+=`<div class='card'>
-<img src='${p.img}'>
-<h3>${p.name}</h3>
-<p>${p.price}$</p>
-<button class='buy' onclick='pay(${JSON.stringify(p)})'>شراء</button>
-</div>`;
-});
-document.getElementById("products").innerHTML=html;
-});
-}
-
-function addProduct(){
-db.collection("products").add({name:name.value,img:img.value,price:price.value});
-load();
-}
-
-async function pay(product){
-const res=await fetch('http://localhost:3000/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product})});
-const data=await res.json();
-const stripe=Stripe("YOUR_PUBLIC_KEY");
-stripe.redirectToCheckout({sessionId:data.id});
-}
-
-function support(){window.location.href="mailto:ziyadz159z@gmail.com"}
-
-load();
-</script>
-</body>
-</html>
-
-
-// ========================= server.js =========================
-const express=require('express');
-const cors=require('cors');
-const stripe=require('stripe')('YOUR_SECRET_KEY');
-const admin=require('firebase-admin');
-
-const app=express();
-app.use(cors());
-app.use(express.json());
-
-const serviceAccount=require('./serviceAccountKey.json');
-admin.initializeApp({credential:admin.credential.cert(serviceAccount)});
-const db=admin.firestore();
-
-app.post('/create-checkout-session',async(req,res)=>{
-const {product}=req.body;
-const session=await stripe.checkout.sessions.create({
-payment_method_types:['card'],
-line_items:[{price_data:{currency:'usd',product_data:{name:product.name},unit_amount:product.price*100},quantity:1}],
-mode:'payment',
-success_url:'https://your-site.com/success.html',
-cancel_url:'https://your-site.com/cancel.html'
-});
-await db.collection('orders').add({product,status:'paid'});
-res.json({id:session.id});
-});
-
-app.listen(3000,()=>console.log('🚀 server running'));
-
-
-// ========================= 🎯 النتيجة =========================
-// ✔ تصميم عالمي فخم
-// ✔ أنيميشن احترافي
-// ✔ دخول مباشر بدون انتظار
-// ✔ متجر + دفع + قاعدة بيانات
-// ✔ أدمن
-// ✔ جاهز للربح
