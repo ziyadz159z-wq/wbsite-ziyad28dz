@@ -3,170 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZW28DZ</title>
+<title>ZW28DZ المتجر</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial;
-    scroll-behavior: smooth;
-}
-
-/* فيديو الخلفية */
-.video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-/* اسم الموقع */
-.header {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    animation: glow 3s infinite alternate;
-}
-
-@keyframes glow {
-    0% { color: red; }
-    50% { color: blue; }
-    100% { color: yellow; }
-}
-
-/* النص الرئيسي */
-.welcome {
-    color: white;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 200px;
-}
-
-/* زر ابدأ */
-.start-btn {
-    display: block;
-    margin: 50px auto;
-    padding: 20px 40px;
-    font-size: 25px;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    animation: rainbow 5s infinite;
-}
-
-@keyframes rainbow {
-    0% { background: red; }
-    20% { background: orange; }
-    40% { background: yellow; }
-    60% { background: green; }
-    80% { background: blue; }
-    100% { background: purple; }
-}
-
-.section {
-    height: 100vh;
-    text-align: center;
-    padding-top: 100px;
-    background: rgba(0,0,0,0.7);
-}
-
-.social img {
-    width: 200px;
-}
-
-.social button {
-    padding: 15px;
-    font-size: 18px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-/* المتجر */
-.shop {
-    display: none;
-    background: white;
-    color: black;
-    padding: 20px;
-}
-
-.product {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-}
-
-.admin {
-    display: none;
-}
-
+body, html {margin:0; padding:0; font-family: Arial; scroll-behavior: smooth;}
+.video-bg {position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index: -1;}
+.header {position: absolute; top:10px; width:100%; text-align:center; font-size:30px; font-weight:bold; animation: glow 3s infinite alternate;}
+@keyframes glow {0% {color:red;} 50% {color:blue;} 100% {color:yellow;}}
+.start-btn {display:block; margin:50px auto; padding:20px 40px; font-size:25px; border:none; cursor:pointer; border-radius:10px; animation: rainbow 5s infinite;}
+@keyframes rainbow {0% {background:red;} 20% {background:orange;} 40% {background:yellow;} 60% {background:green;} 80% {background:blue;} 100% {background:purple;}}
+.welcome {color:white; font-size:40px; text-align:center; margin-top:200px;}
+.section {height:100vh; text-align:center; padding-top:100px; background: rgba(0,0,0,0.7);}
+.social img {width:200px;}
+.social button {padding:15px; font-size:18px; margin-top:10px; cursor:pointer; border-radius:10px;}
+.shop {display:none; background:white; color:black; padding:20px;}
+.product {border:1px solid #ccc; padding:15px; margin:10px; display:inline-block; width:200px; vertical-align:top;}
+.admin {display:none;}
+input, button {font-size:16px; padding:10px; margin:5px;}
+.login-form {display:none; text-align:center; padding:50px; background:rgba(255,255,255,0.9);}
 </style>
 </head>
 <body>
-
 <video autoplay muted loop class="video-bg">
 <source src="https://cdn.coverr.co/videos/coverr-ocean-waves-1606/1080p.mp4" type="video/mp4">
 </video>
-
 <div class="header">ZW28DZ.com</div>
-
 <div class="welcome">مــــرحــــبــــا بــك فــي مـــوقــعـــنــا</div>
+<button class="start-btn" onclick="showLogin()">ابــدا الان</button>
 
-<button class="start-btn" onclick="openShop()">ابــدا الان</button>
-
-<div class="section social">
-    <h2 style="color:white">تابعنا على انستقرام</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-    <br>
-    <button onclick="window.open('https://www.instagram.com/wassim_donx_12?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==')">تــابعنا</button>
-
-    <h2 style="color:white">فيسبوك</h2>
-    <button onclick="notReady()">تابعنا</button>
-
-    <h2 style="color:white">تليغرام</h2>
-    <button onclick="notReady()">تابعنا</button>
-
-    <h2 style="color:white">ديسكورد</h2>
-    <button onclick="notReady()">تابعنا</button>
-
-    <h2 style="color:white">جيميل</h2>
-    <button onclick="notReady()">تابعنا</button>
+<div class="login-form" id="loginForm">
+<h2>تسجيل الدخول / انشاء حساب</h2>
+<input type="text" id="username" placeholder="اسم المستخدم"><br>
+<input type="password" id="password" placeholder="كلمة السر"><br>
+<button onclick="loginUser()">دخول</button>
 </div>
 
 <div class="shop" id="shop">
-    <h1>المتجر</h1>
-    <button style="float:right">الدعم والمساعدة</button>
-
-    <div class="product">
-        <h3>منتج 1</h3>
-        <p>10$</p>
-        <button>شراء</button>
-        <button class="admin">حذف</button>
-    </div>
+<h1>المتجر</h1>
+<button style="float:right" onclick="support()">الدعم والمساعدة</button>
+<div class="product">
+<h3>منتج 1</h3>
+<p>10$</p>
+<button onclick="buyProduct(1)">شراء</button>
+<button class="admin">حذف</button>
+</div>
+<div class="product">
+<h3>منتج 2</h3>
+<p>20$</p>
+<button onclick="buyProduct(2)">شراء</button>
+<button class="admin">حذف</button>
+</div>
 </div>
 
 <script>
-function openShop() {
-    document.querySelector('.shop').style.display = 'block';
-    window.scrollTo(0, document.body.scrollHeight);
+function showLogin(){
+ document.getElementById('loginForm').style.display='block';
+ window.scrollTo(0, document.body.scrollHeight);
 }
 
-function notReady() {
-    alert("❌ للأسف لم يتم انشاء الحساب بعد من طرف صاحب الموقع");
+function loginUser(){
+ var user=document.getElementById('username').value;
+ var pass=document.getElementById('password').value;
+ if(user && pass){
+     alert('✅ تم تسجيل الدخول بنجاح');
+     document.getElementById('loginForm').style.display='none';
+     document.getElementById('shop').style.display='block';
+ }
 }
 
-// نظام ادمن بسيط
-var email = prompt("ادخل ايميلك");
+function support(){
+ alert('💬 يمكنك التواصل مع: ziyadz159z@gmail.com');
+}
+
+function buyProduct(id){
+ alert('💳 سيتم توجيهك للدفع عبر بوابات الدفع العالمية (Stripe / PayPal)');
+ // هنا يمكن اضافة Stripe / PayPal API
+}
+
+var email = prompt("ادخل ايميل الادمن");
 if(email === "ziyadz159z@gmail.com"){
-    document.querySelectorAll('.admin').forEach(el=>el.style.display='inline-block');
+ document.querySelectorAll('.admin').forEach(el=>el.style.display='inline-block');
 }
 </script>
-
 </body>
 </html>
