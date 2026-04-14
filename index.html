@@ -1,257 +1,634 @@
-// ========================= نسخة نهائية (دخول مباشر للمتجر) =========================
-
-// ================= index.html =================
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZW28DZ</title>
-<style>
-body,html{margin:0;font-family:Arial}
-video{position:fixed;width:100%;height:100%;object-fit:cover;z-index:-1}
-.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#fff}
-.title{font-size:50px;font-weight:bold}
-.btn{margin-top:20px;padding:20px 50px;font-size:22px;border:none;border-radius:10px;background:linear-gradient(90deg,red,orange,yellow,green,blue);color:#fff;cursor:pointer}
-.logo{position:absolute;top:20px;right:20px;font-size:28px;font-weight:bold;background:linear-gradient(45deg,red,orange,yellow,green,blue);-webkit-background-clip:text;color:transparent}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ZW-28-DZ | مــرحــبــا بــك</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0a14, #03030a);
+            font-family: 'Montserrat', sans-serif;
+            color: #e5e5e5;
+            position: relative;
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1614164185124-e4d6d9e1ed3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat fixed;
+            opacity: 0.25;
+            z-index: -2;
+            filter: blur(3px);
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, rgba(212, 175, 55, 0.08), rgba(0,0,0,0.6), rgba(212, 175, 55, 0.05));
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb { background: #c9a03d; border-radius: 10px; }
+        .top-bar {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(201, 160, 61, 0.4);
+            padding: 10px 0;
+            font-size: 13px;
+        }
+        .country-selector {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid #c9a03d;
+            border-radius: 30px;
+            padding: 5px 12px;
+            color: #c9a03d;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .country-selector:hover {
+            background: #c9a03d;
+            color: #0a0a0a;
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(201, 160, 61, 0.3);
+        }
+        .logo h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #f5e7c8, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span { font-size: 0.75rem; letter-spacing: 4px; color: #c9a03d; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.8rem; transition: 0.2s; }
+        .cart-icon:hover { color: #d4af37; }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #c9a03d;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-gold {
+            background: transparent;
+            border: 1.5px solid #c9a03d;
+            color: #c9a03d;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: 0.3s;
+            border-radius: 40px;
+        }
+        .btn-gold:hover { background: #c9a03d; color: #0a0a0a; box-shadow: 0 0 15px rgba(201, 160, 61, 0.6); }
+        .hero { min-height: 85vh; display: flex; align-items: center; text-align: center; }
+        .hero h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700; }
+        .gold-text { color: #d4af37; }
+        .product-card {
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(6px);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid rgba(201, 160, 61, 0.3);
+        }
+        .product-card:hover { transform: translateY(-8px); border-color: #c9a03d; }
+        .product-img { height: 280px; object-fit: cover; width: 100%; }
+        .product-price { font-size: 1.5rem; font-weight: 700; color: #d4af37; }
+        .add-to-cart {
+            background: rgba(31,31,31,0.9);
+            border: 1px solid #c9a03d;
+            color: #c9a03d;
+            width: 100%;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+        .add-to-cart:hover { background: #c9a03d; color: #000; }
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s;
+        }
+        .auth-modal.active { visibility: visible; opacity: 1; }
+        .auth-card {
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 2rem;
+            width: 380px;
+            max-width: 90%;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .auth-card input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #c9a03d;
+            border-radius: 60px;
+            color: white;
+        }
+        .auth-card button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #c9a03d;
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+        }
+        .switch-auth { color: #c9a03d; cursor: pointer; margin-top: 15px; display: inline-block; }
+        .cart-modal {
+            position: fixed; top: 0; right: -450px; width: 420px; height: 100%;
+            background: rgba(15,15,15,0.95); backdrop-filter: blur(16px); z-index: 1050;
+            transition: 0.35s; border-left: 2px solid #c9a03d; display: flex; flex-direction: column;
+        }
+        .cart-modal.open { right: 0; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 18px; border-bottom: 1px solid #333; }
+        .remove-item { cursor: pointer; color: #aaa; }
+        .remove-item:hover { color: #c9a03d; }
+        .checkout-btn { background: #c9a03d; color: #0a0a0a; border: none; width: calc(100% - 40px); margin: 0 20px 30px; padding: 14px; border-radius: 40px; font-weight: bold; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1040; visibility: hidden; opacity: 0; transition: 0.25s; }
+        .overlay.active { visibility: visible; opacity: 1; }
+        .music-player {
+            position: fixed; bottom: 25px; left: 25px; background: rgba(0,0,0,0.7); backdrop-filter: blur(12px);
+            border-radius: 60px; padding: 8px 20px; display: flex; align-items: center; gap: 12px; z-index: 1060;
+            border: 1px solid rgba(212, 175, 55, 0.7); cursor: pointer;
+        }
+        .toast-msg { position: fixed; bottom: 100px; left: 25px; background: #c9a03d; color: #0a0a0a; padding: 10px 20px; border-radius: 40px; z-index: 1100; opacity: 0; transition: 0.3s; pointer-events: none; }
+        @media (max-width: 768px) { .hero h2 { font-size: 2.5rem; } .cart-modal { width: 100%; right: -100%; } }
+        .dropdown-menu-custom {
+            background: #1a1a1a;
+            border: 1px solid #c9a03d;
+            border-radius: 20px;
+        }
+        .dropdown-item-custom {
+            color: #e5e5e5;
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+        .dropdown-item-custom:hover {
+            background: #c9a03d;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
-<video autoplay muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-ocean-waves-1600.mp4">
-</video>
-
-<div class="logo">ZW28DZ.com</div>
-
-<div class="center">
-<div class="title">مــــرحــــبــــا بــك فــي مـــوقــعـــنــا</div>
-
-<!-- ⚡ دخول فوري بدون أي انتظار -->
-<button class="btn" onclick="enterShop()">ابــدا الان</button>
+<div class="top-bar text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div><i class="fas fa-shipping-fast me-2"></i> <span id="freeShippingText">توصيل مجاني للطلبات فوق 5000 درهم</span> | <i class="fas fa-gem"></i> <span id="exclusiveText">تشكيلة ZW-28-DZ الحصرية</span></div>
+        <div class="dropdown">
+            <button class="country-selector dropdown-toggle" type="button" id="countryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-globe"></i> <span id="selectedCountry">🇩🇿 الجزائر</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="countryDropdown">
+                <li class="dropdown-item-custom" data-country="dz" data-lang="ar" data-currency="DZD" data-symbol="د.ج" data-rate="1"><i class="fas fa-flag-checkered"></i> 🇩🇿 الجزائر - العربية (دينار)</li>
+                <li class="dropdown-item-custom" data-country="us" data-lang="en" data-currency="USD" data-symbol="$" data-rate="0.0037"><i class="fas fa-flag-checkered"></i> 🇺🇸 USA - English (Dollar)</li>
+                <li class="dropdown-item-custom" data-country="fr" data-lang="fr" data-currency="EUR" data-symbol="€" data-rate="0.0034"><i class="fas fa-flag-checkered"></i> 🇫🇷 France - Français (Euro)</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<script>
-function enterShop(){
-    // تحويل مباشر وسريع جداً
-    window.location.replace("shop.html");
-}
-</script>
+<nav class="navbar sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo"><h1>ZW-28-DZ</h1><span>COUTURE HORLOGERIE</span></div>
+        <div class="d-flex align-items-center gap-4">
+            <a href="#" class="text-decoration-none text-white-50 d-none d-md-block" id="collectionLink">المجموعة</a>
+            <a href="#" class="text-decoration-none text-white-50 d-none d-md-block" id="limitedLink">إصدارات محدودة</a>
+            <div id="authBtn" class="btn-gold rounded-pill px-3 py-1" style="cursor:pointer;"><i class="fas fa-user"></i> <span id="userNameDisplay">تسجيل الدخول</span></div>
+            <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></div>
+        </div>
+    </div>
+</nav>
 
-</body>
-</html>
+<section class="hero">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="mb-3"><span id="heroTitle1">أرقى الإصدارات</span> <span class="gold-text">ZW-28-DZ</span></h2>
+                <p class="mb-5 lead" id="heroDesc">ساعات و إكسسوارات فاخرة – كل قطعة تحمل رمز الندرة والأناقة</p>
+                <a href="#products" class="btn btn-gold px-5 py-3" id="discoverBtn">اكتشف التشكيلة <i class="fas fa-arrow-left me-2"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section id="products" class="py-5">
+    <div class="container py-4">
+        <div class="text-center mb-5"><span class="small text-uppercase" id="exclusiveBadge">مقتنيات حصرية</span><h2 class="mt-2" style="font-family:'Cormorant Garamond'; font-size:2.8rem; border-right:4px solid #c9a03d; padding-right:20px; display:inline-block;" id="latestTitle">أحدث القطع الفاخرة</h2></div>
+        <div class="row g-4" id="productsContainer"></div>
+    </div>
+</section>
 
-// ================= shop.html =================
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>المتجر</title>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-<style>
-body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial}
-header{padding:15px;background:#1a1a1a;text-align:center;font-size:20px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:20px}
-.card{background:#1c1c1c;padding:15px;border-radius:10px;text-align:center;transition:0.3s}
-.card:hover{transform:scale(1.05)}
-.card img{width:100%;border-radius:10px}
-.buy{margin-top:10px;padding:10px;border:none;border-radius:6px;background:linear-gradient(90deg,red,orange,yellow,green,blue);color:#fff;cursor:pointer}
-.loader{text-align:center;margin-top:50px;font-size:20px}
-</style>
-</head>
-<body>
-
-<header>🔥 أقوى العروض الآن</header>
-
-<div id="loader" class="loader">جاري تحميل المنتجات...</div>
-<div class="products" id="products"></div>
-
-<script>
-const firebaseConfig={apiKey:"YOUR_KEY",authDomain:"YOUR_DOMAIN",projectId:"YOUR_ID"};
-firebase.initializeApp(firebaseConfig);
-const db=firebase.firestore();
-
-function load(){
-const container=document.getElementById("products");
-const loader=document.getElementById("loader");
-
-// تحميل سريع بدون تأخير
-setTimeout(()=>{
-    db.collection("products").get().then(s=>{
-        loader.style.display="none";
-        let html="";
-        s.forEach(doc=>{
-            let p=doc.data();
-            html+=`<div class='card'>
-            <img src='${p.img}'>
-            <h3>${p.name}</h3>
-            <p>${p.price}$</p>
-            <button class='buy'>شراء الآن</button>
-            </div>`;
-        });
-        container.innerHTML=html;
-    });
-},300); // سرعة تحميل فخمة
-}
-
-load();
-</script>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>إضافة مستخدم</title>
-
-<style>
-/* 🌌 خلفية فخمة */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c92d2);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
-}
-
-/* تحريك الخلفية */
-@keyframes gradientMove {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-/* 📦 الصندوق */
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 30px;
-    border-radius: 20px;
-    width: 320px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    text-align: center;
-    color: white;
-}
-
-/* العنوان */
-h2 {
-    margin-bottom: 20px;
-}
-
-/* الحقول */
-input {
-    width: 90%;
-    padding: 12px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    font-size: 14px;
-}
-
-/* الأزرار */
-button {
-    width: 95%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-/* زر إرسال */
-button:nth-of-type(1) {
-    background: linear-gradient(45deg, #00c6ff, #0072ff);
-    color: white;
-}
-
-/* زر عرض */
-button:nth-of-type(2) {
-    background: linear-gradient(45deg, #f7971e, #ffd200);
-    color: black;
-}
-
-/* hover */
-button:hover {
-    transform: scale(1.05);
-}
-
-/* القائمة */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-    max-height: 150px;
-    overflow-y: auto;
-}
-
-li {
-    background: rgba(255,255,255,0.15);
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 8px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <h2>إضافة مستخدم</h2>
-
-    <input type="text" id="name" placeholder="الاسم">
-    <input type="number" id="age" placeholder="العمر">
-
-    <button onclick="addUser()">إرسال</button>
-    <button onclick="getUsers()">عرض المستخدمين</button>
-
-    <ul id="list"></ul>
-
+<!-- مودال تسجيل الدخول -->
+<div id="authModal" class="auth-modal">
+    <div class="auth-card">
+        <i class="fas fa-crown" style="font-size: 2rem; color: #d4af37;"></i>
+        <h3 class="mt-2" id="authTitle">تسجيل الدخول</h3>
+        <input type="text" id="authName" placeholder="الاسم الكامل" style="display: none;">
+        <input type="email" id="authEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="authPassword" placeholder="كلمة المرور">
+        <button id="authActionBtn">دخول</button>
+        <div><span id="toggleAuthText" class="switch-auth">ليس لديك حساب؟ إنشاء حساب جديد</span></div>
+        <div><span id="closeAuthModal" class="switch-auth" style="color:#aaa;">إغلاق</span></div>
+    </div>
 </div>
 
+<!-- سلة التسوق -->
+<div class="overlay" id="cartOverlay"></div>
+<div class="cart-modal" id="cartModal">
+    <div class="cart-header d-flex justify-content-between p-3"><h5 id="cartTitle"><i class="fas fa-shopping-bag"></i> سلتي</h5><i class="fas fa-times fs-4" id="closeCartBtn" style="cursor:pointer;"></i></div>
+    <div class="cart-items" id="cartItemsList">سلة فارغة</div>
+    <div class="cart-total d-flex justify-content-between p-3"><span id="totalLabel">المجموع</span><span id="cartTotalAmount">0 درهم</span></div>
+    <button class="checkout-btn" id="checkoutBtn">إتمام الشراء</button>
+</div>
+
+<div class="toast-msg" id="toastMsg">✨ تمت الإضافة</div>
+<audio id="bgMusic" loop preload="auto"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"></audio>
+<div class="music-player" id="musicToggleBtn"><i class="fas fa-music" id="musicIcon"></i><span id="musicStatus">تشغيل الموسيقى</span></div>
+
 <script>
-let users = [];
+    // ---------- بيانات المنتجات الأساسية (بالدينار الجزائري) ----------
+    const productsDataBase = [
+        { id: 1, name: { ar: "Onyx Noir GMT", en: "Onyx Noir GMT", fr: "Onyx Noir GMT" }, priceDZD: 98500, img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "حركة أوتوماتيكية", en: "Automatic movement", fr: "Mouvement automatique" } },
+        { id: 2, name: { ar: "Golden Eclipse", en: "Golden Eclipse", fr: "Golden Eclipse" }, priceDZD: 147500, img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "ذهب عيار 18", en: "18K Gold", fr: "Or 18 carats" } },
+        { id: 3, name: { ar: "Skeleton Carbon", en: "Skeleton Carbon", fr: "Skeleton Carbone" }, priceDZD: 123000, img: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "مكشوف مقاوم للماء", en: "Water resistant skeleton", fr: "Squelette étanche" } },
+        { id: 4, name: { ar: "Diamond Oasis", en: "Diamond Oasis", fr: "Oasis Diamant" }, priceDZD: 239000, img: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "مرصع بـ 42 ماسة", en: "Set with 42 diamonds", fr: "42 diamants" } },
+        { id: 5, name: { ar: "Platinum Chrono", en: "Platinum Chrono", fr: "Chrono Platine" }, priceDZD: 182000, img: "https://images.unsplash.com/photo-1612817159949-195b6c9e31f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "كرونوغراف بلاتين", en: "Platinum chronograph", fr: "Chronographe platine" } },
+        { id: 6, name: { ar: "Midnight Tourbillon", en: "Midnight Tourbillon", fr: "Tourbillon Minuit" }, priceDZD: 349000, img: "https://images.unsplash.com/photo-1585123334904-845d60e6b56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "توربيون محدود", en: "Limited tourbillon", fr: "Tourbillon limité" } }
+    ];
 
-function addUser() {
-    let name = document.getElementById("name").value;
-    let age = document.getElementById("age").value;
+    // إعدادات البلدان
+    const countries = {
+        dz: { lang: "ar", currency: "DZD", symbol: "د.ج", rate: 1, name: "🇩🇿 الجزائر", dir: "rtl" },
+        us: { lang: "en", currency: "USD", symbol: "$", rate: 0.0037, name: "🇺🇸 USA", dir: "ltr" },
+        fr: { lang: "fr", currency: "EUR", symbol: "€", rate: 0.0034, name: "🇫🇷 France", dir: "ltr" }
+    };
 
-    if(name && age){
-        users.push({name, age});
-        alert("تمت الإضافة ✅");
+    let currentCountry = "dz"; // افتراضي الجزائر
+    let currentLang = "ar";
+    let currentCurrency = "DZD";
+    let currentSymbol = "د.ج";
+    let currentRate = 1;
+
+    // نصوص الموقع متعددة اللغات
+    const translations = {
+        ar: {
+            freeShipping: "توصيل مجاني للطلبات فوق 5000 درهم",
+            exclusive: "تشكيلة ZW-28-DZ الحصرية",
+            collection: "المجموعة",
+            limited: "إصدارات محدودة",
+            login: "تسجيل الدخول",
+            heroTitle: "أرقى الإصدارات",
+            heroDesc: "ساعات و إكسسوارات فاخرة – كل قطعة تحمل رمز الندرة والأناقة",
+            discover: "اكتشف التشكيلة",
+            exclusiveBadge: "مقتنيات حصرية",
+            latestTitle: "أحدث القطع الفاخرة",
+            addToCart: "أضف",
+            cart: "سلتي",
+            total: "المجموع",
+            checkout: "إتمام الشراء",
+            emptyCart: "سلة فارغة",
+            added: "تمت الإضافة",
+            removed: "تمت الإزالة",
+            authLogin: "تسجيل الدخول",
+            authRegister: "إنشاء حساب جديد",
+            authNamePlaceholder: "الاسم الكامل",
+            authEmailPlaceholder: "البريد الإلكتروني",
+            authPasswordPlaceholder: "كلمة المرور",
+            authToggleLogin: "ليس لديك حساب؟ إنشاء حساب جديد",
+            authToggleRegister: "لديك حساب؟ سجل دخول",
+            close: "إغلاق",
+            loginBtn: "دخول",
+            registerBtn: "تسجيل",
+            welcomeBack: "أهلاً بعودتك",
+            welcomeNew: "مرحباً",
+            logout: "تسجيل الخروج",
+            guest: "زائر",
+            musicPlay: "تشغيل الموسيقى",
+            musicPlaying: "موسيقى هادئة"
+        },
+        en: {
+            freeShipping: "Free shipping on orders over 5000 DZD",
+            exclusive: "ZW-28-DZ Exclusive Collection",
+            collection: "Collection",
+            limited: "Limited Editions",
+            login: "Login",
+            heroTitle: "Finest Editions",
+            heroDesc: "Luxury watches & accessories – each piece carries a mark of rarity and elegance",
+            discover: "Discover the Collection",
+            exclusiveBadge: "Exclusive Pieces",
+            latestTitle: "Latest Luxury Timepieces",
+            addToCart: "Add",
+            cart: "My Cart",
+            total: "Total",
+            checkout: "Checkout",
+            emptyCart: "Cart is empty",
+            added: "Added",
+            removed: "Removed",
+            authLogin: "Login",
+            authRegister: "Create Account",
+            authNamePlaceholder: "Full Name",
+            authEmailPlaceholder: "Email",
+            authPasswordPlaceholder: "Password",
+            authToggleLogin: "Don't have an account? Create one",
+            authToggleRegister: "Already have an account? Login",
+            close: "Close",
+            loginBtn: "Login",
+            registerBtn: "Register",
+            welcomeBack: "Welcome back",
+            welcomeNew: "Welcome",
+            logout: "Logout",
+            guest: "Guest",
+            musicPlay: "Play Music",
+            musicPlaying: "Calm Music"
+        },
+        fr: {
+            freeShipping: "Livraison gratuite pour les commandes de plus de 5000 DZD",
+            exclusive: "Collection exclusive ZW-28-DZ",
+            collection: "Collection",
+            limited: "Éditions limitées",
+            login: "Connexion",
+            heroTitle: "Plus belles éditions",
+            heroDesc: "Montres et accessoires de luxe – chaque pièce porte un sceau de rareté et d'élégance",
+            discover: "Découvrir la collection",
+            exclusiveBadge: "Pièces exclusives",
+            latestTitle: "Dernières pièces de luxe",
+            addToCart: "Ajouter",
+            cart: "Mon panier",
+            total: "Total",
+            checkout: "Commander",
+            emptyCart: "Panier vide",
+            added: "Ajouté",
+            removed: "Retiré",
+            authLogin: "Connexion",
+            authRegister: "Créer un compte",
+            authNamePlaceholder: "Nom complet",
+            authEmailPlaceholder: "E-mail",
+            authPasswordPlaceholder: "Mot de passe",
+            authToggleLogin: "Pas de compte ? Créez-en un",
+            authToggleRegister: "Déjà un compte ? Connectez-vous",
+            close: "Fermer",
+            loginBtn: "Se connecter",
+            registerBtn: "S'inscrire",
+            welcomeBack: "Bon retour",
+            welcomeNew: "Bienvenue",
+            logout: "Déconnexion",
+            guest: "Invité",
+            musicPlay: "Lire la musique",
+            musicPlaying: "Musique douce"
+        }
+    };
+
+    function applyLanguageAndCurrency() {
+        const t = translations[currentLang];
+        document.getElementById("freeShippingText").innerText = t.freeShipping;
+        document.getElementById("exclusiveText").innerText = t.exclusive;
+        document.getElementById("collectionLink").innerText = t.collection;
+        document.getElementById("limitedLink").innerText = t.limited;
+        if (!currentUser) document.getElementById("userNameDisplay").innerText = t.login;
+        document.getElementById("heroTitle1").innerText = t.heroTitle;
+        document.getElementById("heroDesc").innerText = t.heroDesc;
+        document.getElementById("discoverBtn").innerHTML = t.discover + ' <i class="fas fa-arrow-left me-2"></i>';
+        document.getElementById("exclusiveBadge").innerText = t.exclusiveBadge;
+        document.getElementById("latestTitle").innerText = t.latestTitle;
+        document.getElementById("cartTitle").innerHTML = '<i class="fas fa-shopping-bag"></i> ' + t.cart;
+        document.getElementById("totalLabel").innerText = t.total;
+        document.getElementById("checkoutBtn").innerText = t.checkout;
+        document.getElementById("authTitle").innerText = isLoginMode ? t.authLogin : t.authRegister;
+        document.getElementById("authName").placeholder = t.authNamePlaceholder;
+        document.getElementById("authEmail").placeholder = t.authEmailPlaceholder;
+        document.getElementById("authPassword").placeholder = t.authPasswordPlaceholder;
+        document.getElementById("authActionBtn").innerText = isLoginMode ? t.loginBtn : t.registerBtn;
+        document.getElementById("toggleAuthText").innerText = isLoginMode ? t.authToggleLogin : t.authToggleRegister;
+        document.getElementById("closeAuthModal").innerText = t.close;
+        document.getElementById("selectedCountry").innerHTML = countries[currentCountry].name;
+        document.getElementById("musicStatus").innerText = isPlaying ? t.musicPlaying : t.musicPlay;
+        // إعادة عرض المنتجات
+        renderProducts();
+        updateCartUI();
     }
-}
 
-function getUsers() {
-    let list = document.getElementById("list");
-    list.innerHTML = "";
+    function convertPrice(priceDZD) {
+        return Math.round(priceDZD * currentRate);
+    }
 
-    users.forEach(u => {
-        let li = document.createElement("li");
-        li.textContent = `👤 ${u.name} - 🎂 ${u.age}`;
-        list.appendChild(li);
+    function formatPrice(price) {
+        return price.toLocaleString() + " " + currentSymbol;
+    }
+
+    function renderProducts() {
+        const container = document.getElementById("productsContainer");
+        let cards = '';
+        productsDataBase.forEach(p => {
+            const convertedPrice = convertPrice(p.priceDZD);
+            const productName = p.name[currentLang] || p.name.ar;
+            const productDesc = p.desc[currentLang] || p.desc.ar;
+            cards += `<div class="col-lg-4 col-md-6"><div class="product-card h-100"><img src="${p.img}" class="product-img"><div class="p-4"><h5>${productName}</h5><p class="small">${productDesc}</p><div class="d-flex justify-content-between"><span class="product-price">${formatPrice(convertedPrice)}</span><button class="add-to-cart" data-id="${p.id}" data-name="${productName}" data-price="${convertedPrice}"><i class="fas fa-plus-circle"></i> ${translations[currentLang].addToCart}</button></div></div></div></div>`;
+        });
+        container.innerHTML = cards;
+        document.querySelectorAll(".add-to-cart").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = parseInt(btn.dataset.id);
+                const name = btn.dataset.name;
+                const price = parseInt(btn.dataset.price);
+                addToCart(id, name, price);
+            });
+        });
+    }
+
+    // تغيير البلد
+    function setCountry(countryCode) {
+        currentCountry = countryCode;
+        currentLang = countries[countryCode].lang;
+        currentCurrency = countries[countryCode].currency;
+        currentSymbol = countries[countryCode].symbol;
+        currentRate = countries[countryCode].rate;
+        // تغيير اتجاه الصفحة
+        const newDir = countries[countryCode].dir;
+        document.body.dir = newDir;
+        document.documentElement.lang = currentLang;
+        if (newDir === "ltr") {
+            document.body.style.textAlign = "left";
+        } else {
+            document.body.style.textAlign = "right";
+        }
+        applyLanguageAndCurrency();
+        // إعادة تحميل السلة لتعكس العملة الجديدة (يتم تحديث الأسعار المخزنة)
+        loadCartForUser();
+    }
+
+    // نظام المستخدمين والسلة (نفس الكود السابق مع دعم العملة)
+    let currentUser = null;
+    let cart = [];
+    let isLoginMode = true;
+
+    function loadUsers() { return JSON.parse(localStorage.getItem("zw28_users")) || []; }
+    function saveUsers(users) { localStorage.setItem("zw28_users", JSON.stringify(users)); }
+    function saveCurrentUser(user) { localStorage.setItem("zw28_currentUser", JSON.stringify(user)); currentUser = user; updateUIForUser(); }
+    function loadCurrentUser() { const u = localStorage.getItem("zw28_currentUser"); currentUser = u ? JSON.parse(u) : null; updateUIForUser(); }
+
+    function updateUIForUser() {
+        const t = translations[currentLang];
+        if (currentUser) document.getElementById("userNameDisplay").innerText = currentUser.name.split(' ')[0];
+        else document.getElementById("userNameDisplay").innerText = t.login;
+        loadCartForUser();
+    }
+
+    function getCartKey() { return currentUser ? `cart_${currentUser.id}` : "guest_cart"; }
+    function loadCartForUser() {
+        const key = getCartKey();
+        const stored = localStorage.getItem(key);
+        cart = stored ? JSON.parse(stored) : [];
+        updateCartUI(); updateCartCount();
+    }
+    function saveCartForUser() { localStorage.setItem(getCartKey(), JSON.stringify(cart)); }
+
+    function updateCartCount() { document.getElementById("cartCount").innerText = cart.reduce((a,i)=>a+i.quantity,0); }
+    function showToast(msg) { const t = document.getElementById("toastMsg"); t.innerText = msg; t.style.opacity = "1"; setTimeout(() => t.style.opacity = "0", 2000); }
+    function updateCartUI() {
+        const container = document.getElementById("cartItemsList");
+        const totalSpan = document.getElementById("cartTotalAmount");
+        if (cart.length === 0) { container.innerHTML = `<div class="text-center py-5">${translations[currentLang].emptyCart}</div>`; totalSpan.innerText = "0 " + currentSymbol; return; }
+        let html = '', total = 0;
+        cart.forEach(item => { total += item.price * item.quantity; html += `<div class="cart-item p-2"><div><h6>${item.name}</h6><small>${translations[currentLang].addToCart} : ${item.quantity}</small><div class="gold-text">${formatPrice(item.price * item.quantity)}</div></div><div class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></div></div>`; });
+        container.innerHTML = html; totalSpan.innerText = formatPrice(total);
+        document.querySelectorAll(".remove-item").forEach(el => el.addEventListener("click", (e) => { const id = parseInt(el.dataset.id); cart = cart.filter(i => i.id !== id); saveCartForUser(); updateCartUI(); updateCartCount(); showToast(translations[currentLang].removed); }));
+    }
+    function addToCart(id, name, price) {
+        const existing = cart.find(i => i.id === id);
+        if (existing) existing.quantity++; else cart.push({ id, name, price, quantity: 1 });
+        saveCartForUser(); updateCartUI(); updateCartCount(); showToast(`${translations[currentLang].added} ${name}`);
+    }
+
+    // المصادقة
+    function register(name, email, password) {
+        let users = loadUsers();
+        if (users.find(u => u.email === email)) { showToast(translations[currentLang].authToggleLogin); return false; }
+        const newUser = { id: Date.now(), name, email, password };
+        users.push(newUser);
+        saveUsers(users);
+        saveCurrentUser(newUser);
+        showToast(`${translations[currentLang].welcomeNew} ${name}`);
+        closeAuthModal();
+        return true;
+    }
+    function login(email, password) {
+        const users = loadUsers();
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) { saveCurrentUser(user); showToast(`${translations[currentLang].welcomeBack} ${user.name}`); closeAuthModal(); return true; }
+        else { showToast(translations[currentLang].authToggleRegister); return false; }
+    }
+    function logout() { localStorage.removeItem("zw28_currentUser"); currentUser = null; updateUIForUser(); showToast(translations[currentLang].logout); }
+
+    // مودال المصادقة
+    const authModal = document.getElementById("authModal");
+    const authTitle = document.getElementById("authTitle");
+    const authNameField = document.getElementById("authName");
+    const authEmail = document.getElementById("authEmail");
+    const authPassword = document.getElementById("authPassword");
+    const authActionBtn = document.getElementById("authActionBtn");
+    const toggleAuthText = document.getElementById("toggleAuthText");
+
+    function openAuthModal() { authModal.classList.add("active"); }
+    function closeAuthModal() { authModal.classList.remove("active"); }
+    function resetAuthForm() { authEmail.value = ""; authPassword.value = ""; authNameField.value = ""; }
+
+    toggleAuthText.onclick = () => {
+        isLoginMode = !isLoginMode;
+        const t = translations[currentLang];
+        if (isLoginMode) { authTitle.innerText = t.authLogin; authNameField.style.display = "none"; authActionBtn.innerText = t.loginBtn; toggleAuthText.innerText = t.authToggleLogin; }
+        else { authTitle.innerText = t.authRegister; authNameField.style.display = "block"; authActionBtn.innerText = t.registerBtn; toggleAuthText.innerText = t.authToggleRegister; }
+    };
+    authActionBtn.onclick = () => {
+        const email = authEmail.value.trim();
+        const password = authPassword.value.trim();
+        if (!email || !password) { showToast(translations[currentLang].authEmailPlaceholder); return; }
+        if (isLoginMode) login(email, password);
+        else { const name = authNameField.value.trim(); if (!name) { showToast(translations[currentLang].authNamePlaceholder); return; } register(name, email, password); }
+        resetAuthForm();
+    };
+    document.getElementById("closeAuthModal").onclick = closeAuthModal;
+    document.getElementById("authBtn").onclick = () => { if (currentUser) logout(); else openAuthModal(); };
+
+    // السلة مودال
+    const cartModal = document.getElementById("cartModal"), overlay = document.getElementById("cartOverlay");
+    function openCart() { cartModal.classList.add("open"); overlay.classList.add("active"); document.body.style.overflow = "hidden"; }
+    function closeCart() { cartModal.classList.remove("open"); overlay.classList.remove("active"); document.body.style.overflow = ""; }
+    document.getElementById("cartIcon").onclick = openCart;
+    document.getElementById("closeCartBtn").onclick = closeCart;
+    overlay.onclick = closeCart;
+    document.getElementById("checkoutBtn").onclick = () => { if(cart.length) { alert(translations[currentLang].checkout); cart = []; saveCartForUser(); updateCartUI(); updateCartCount(); closeCart(); showToast(translations[currentLang].checkout); } else showToast(translations[currentLang].emptyCart); };
+
+    // الموسيقى
+    const music = document.getElementById("bgMusic"), musicBtn = document.getElementById("musicToggleBtn"), musicIcon = document.getElementById("musicIcon"), musicStatusSpan = document.getElementById("musicStatus");
+    let isPlaying = false; music.volume = 0.2;
+    function playMusic() { music.play().then(() => { isPlaying = true; musicIcon.className = "fas fa-volume-up"; musicStatusSpan.innerText = translations[currentLang].musicPlaying; }).catch(()=>{}); }
+    function pauseMusic() { music.pause(); isPlaying = false; musicIcon.className = "fas fa-music"; musicStatusSpan.innerText = translations[currentLang].musicPlay; }
+    musicBtn.onclick = () => isPlaying ? pauseMusic() : playMusic();
+    document.addEventListener("click", function firstClick() { if (!isPlaying) playMusic(); document.removeEventListener("click", firstClick); });
+
+    // مستمع تغيير البلد من القائمة المنسدلة
+    document.querySelectorAll(".dropdown-item-custom").forEach(item => {
+        item.addEventListener("click", () => {
+            const country = item.getAttribute("data-country");
+            setCountry(country);
+        });
     });
-}
+
+    // بدء التشغيل
+    loadCurrentUser();
+    setCountry("dz"); // الافتراضي الجزائر
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-</body>
-</html>
-<script src="app.js"></script>
-
-// ================= النتيجة =================
-// ✔ ضغط زر "ابدأ الآن" → دخول مباشر بدون انتظار
-// ✔ ظهور المنتجات بسرعة
-// ✔ تصميم احترافي وسريع
-// ✔ تجربة مستخدم فخمة مثل المتاجر العالمية
